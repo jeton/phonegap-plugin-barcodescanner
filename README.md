@@ -7,6 +7,12 @@ Cross-platform BarcodeScanner for Cordova / PhoneGap.
 
 Follows the [Cordova Plugin spec](http://cordova.apache.org/docs/en/5.0.0/plugin_ref_spec.md), so that it works with [Plugman](https://github.com/apache/cordova-plugman).
 
+
+## A hardcoded iOS fix
+
+Set it to always use the front-facing camera and remove the camera flip button in the actions bar.
+
+
 ## Installation
 
     
