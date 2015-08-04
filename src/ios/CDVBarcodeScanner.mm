@@ -262,10 +262,11 @@ parentViewController:(UIViewController*)parentViewController
     self.parentViewController = parentViewController;
     self.alternateXib         = alternateXib;
     
-    self.is1D      = YES;
-    self.is2D      = YES;
-    self.capturing = NO;
-    self.results = [NSMutableArray new];
+    self.is1D           = YES;
+    self.is2D           = YES;
+    self.capturing      = NO;
+    self.isFrontCamera  = YES;
+    self.results        = [NSMutableArray new];
     
     CFURLRef soundFileURLRef  = CFBundleCopyResourceURL(CFBundleGetMainBundle(), CFSTR("CDVBarcodeScanner.bundle/beep"), CFSTR ("caf"), NULL);
     AudioServicesCreateSystemSoundID(soundFileURLRef, &_soundFileObject);
@@ -922,11 +923,11 @@ parentViewController:(UIViewController*)parentViewController
                     action:nil
                     ];
     
-    id flipCamera = [[UIBarButtonItem alloc]
-                       initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
-                       target:(id)self
-                       action:@selector(flipCameraButtonPressed:)
-                       ];
+    //id flipCamera = [[UIBarButtonItem alloc]
+    //                   initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
+    //                   target:(id)self
+    //                   action:@selector(flipCameraButtonPressed:)
+    //                   ];
     
 #if USE_SHUTTER
     id shutterButton = [[UIBarButtonItem alloc]
@@ -935,9 +936,9 @@ parentViewController:(UIViewController*)parentViewController
                         action:@selector(shutterButtonPressed)
                         ];
     
-    toolbar.items = [NSArray arrayWithObjects:flexSpace,cancelButton,flexSpace, flipCamera ,shutterButton,nil];
+    toolbar.items = [NSArray arrayWithObjects:flexSpace,cancelButton,flexSpace, nil,shutterButton,nil];
 #else
-    toolbar.items = [NSArray arrayWithObjects:flexSpace,cancelButton,flexSpace, flipCamera,nil];
+    toolbar.items = [NSArray arrayWithObjects:flexSpace,cancelButton,flexSpace, nil,nil];
 #endif
     bounds = overlayView.bounds;
     
